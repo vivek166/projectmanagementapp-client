@@ -1,0 +1,25 @@
+<div>
+	<h1>GetEmployee</h1>
+</div>
+
+
+<div class="bs-component" ng-controller="getemployeeCtrl">
+	<table class="table table-striped table-hover">
+		<thead>
+		  <tr>
+    		<th>Emlpoyee Id</th>
+    		<th>Employee Name</th>
+    		<th>Employee Department</th>
+    		<th>Subjects</th>
+  		  </tr>
+		</thead>
+		<tbody>
+  		  <tr ng-repeat="employee in employees">
+    		<td>{{employee.empId}}</td>
+    		<td>{{employee.empName}}</td>
+    		<td>{{employee.empDepartment}}</td>
+    		<td>{{employee.empSubjects}}</td>
+  		  </tr>
+		</tbody>
+	</table>
+</div>

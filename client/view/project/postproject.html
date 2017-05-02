@@ -1,0 +1,33 @@
+<div>
+	<h1>PostProject</h1>
+</div>
+
+<div class="bs-component" ng-controller="postprojectCtrl">
+	<table class="table table-striped table-hover">
+		<tbody>
+		  <tr>
+    		<th>Project Id</th>
+    		<td><input type="text" ng-model="projectId"></td>
+    	  </tr>
+		  <tr>
+    		<th>Project Title</th>
+    		<td><input type="text" ng-model="projectTitle"></td>
+    	  </tr>
+    	  <tr>
+    		<th>Project Feature</th>
+    		<td><input type="text" ng-model="projectFeature"></td>
+    	  </tr>
+    	  <tr>
+    		<th>Project Description</th>
+    		<td><input type="text" ng-model="projectDescription"></td>
+    	  </tr>
+    	  <tr>
+    		<th>Technology Used</th>
+    		<td><input type="text" ng-model="technologyUsed"></td>
+  		  </tr>
+  		  <tr>
+  		  	<td><button ng-click="save()">Save</button></td>
+  		  </tr>
+		</tbody>
+	</table>
+</div>

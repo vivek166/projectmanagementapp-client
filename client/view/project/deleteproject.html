@@ -1,0 +1,28 @@
+<div>
+	<h1>DeleteProject</h1>
+</div>
+
+<div class="bs-component" ng-controller="deleteprojectCtrl">
+	<table class="table table-striped table-hover">
+		<thead>
+		  <tr>
+    		<th>Project Description</th>
+    		<th>Project Feature</th>
+    		<th>Project Id</th>
+    		<th>Project Title</th>
+    		<th>Technology Used</th>
+            <th>Action</th>
+  		  </tr>
+		</thead>
+		<tbody>
+  		  <tr ng-repeat="project in projects">
+    		<td>{{project.projectDescription}}</td>
+    		<td>{{project.projectFeature}}</td>
+    		<td>{{project.projectId}}</td>
+    		<td>{{project.projectTitle}}</td>
+    		<td>{{project.technologyUsed}}</td>
+            <td><button ng-click="delete(project.projectId)">Delete</button></td>
+  		  </tr>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,26 @@
+<div>
+	<h1>GetProject</h1>
+</div>
+
+<div class="bs-component" ng-controller="getprojectCtrl">
+	<table class="table table-striped table-hover">
+		<thead>
+		  <tr>
+    		<th>Project Description</th>
+    		<th>Project Feature</th>
+    		<th>Project Id</th>
+    		<th>Project Title</th>
+    		<th>Technology Used</th>
+  		  </tr>
+		</thead>
+		<tbody>
+  		  <tr ng-repeat="project in projects">
+    		<td>{{project.projectDescription}}</td>
+    		<td>{{project.projectFeature}}</td>
+    		<td>{{project.projectId}}</td>
+    		<td>{{project.projectTitle}}</td>
+    		<td>{{project.technologyUsed}}</td>
+  		  </tr>
+		</tbody>
+	</table>
+</div>
