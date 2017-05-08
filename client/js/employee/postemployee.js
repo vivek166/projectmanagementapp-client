@@ -1,7 +1,6 @@
 app.controller('postemployeeCtrl',function($scope, $http){
     $scope.save=function(){
     var employee={};
-    employee.empId=$scope.empId;
     employee.empName=$scope.empName;
     employee.empDepartment=$scope.empDepartment;
     employee.empSubjects=$scope.empSubjects;

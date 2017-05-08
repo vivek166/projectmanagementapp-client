@@ -2,11 +2,11 @@
 app.controller('postprojectCtrl', function($scope, $http) {
 	$scope.save=function(){
 	var project={};
-	project.projectId=$scope.projectId;
 	project.projectTitle=$scope.projectTitle;
 	project.projectFeature=$scope.projectFeature;
 	project.projectDescription=$scope.projectDescription;
 	project.technologyUsed=$scope.technologyUsed;
+    project.emplIds=$scope.emplIds;
 
         $http({
             method: 'POST',

@@ -1,5 +1,11 @@
 <div>
 	<h1>DeleteProject</h1>
+    <div class="input-group">
+       <input type="text" class="form-control" ng-model="projectId" placeholder="Delete Project with Id..">
+          <span class="input-group-btn">
+            <button class="btn btn-info" type="button">Search</button>
+          </span>
+    </div>
 </div>
 
 <div class="bs-component" ng-controller="deleteprojectCtrl">
@@ -15,13 +21,13 @@
   		  </tr>
 		</thead>
 		<tbody>
-  		  <tr ng-repeat="project in projects">
+  		  <tr ng-repeat="project in projects | filter:projectId">
     		<td>{{project.projectDescription}}</td>
     		<td>{{project.projectFeature}}</td>
     		<td>{{project.projectId}}</td>
     		<td>{{project.projectTitle}}</td>
     		<td>{{project.technologyUsed}}</td>
-            <td><button ng-click="delete(project.projectId)">Delete</button></td>
+            <td><button  class="btn btn-danger" ng-click="delete(project.projectId)">Delete</button></td>
   		  </tr>
 		</tbody>
 	</table>

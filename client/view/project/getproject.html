@@ -1,26 +1,46 @@
-<div>
-	<h1>GetProject</h1>
-</div>
+<div ng-controller="getprojectCtrl">
+  <h1>GetProject</h1>
+  <div class="input-group">
+       <input type="text" class="form-control" ng-model="content" placeholder="Search Project with Id..">
+          <span class="input-group-btn">
+            <button class="btn btn-info" ng-click="search(content)" type="button">Search</button>
+          </span>
+    </div>
 
-<div class="bs-component" ng-controller="getprojectCtrl">
-	<table class="table table-striped table-hover">
-		<thead>
-		  <tr>
-    		<th>Project Description</th>
-    		<th>Project Feature</th>
-    		<th>Project Id</th>
-    		<th>Project Title</th>
-    		<th>Technology Used</th>
-  		  </tr>
-		</thead>
-		<tbody>
-  		  <tr ng-repeat="project in projects">
-    		<td>{{project.projectDescription}}</td>
-    		<td>{{project.projectFeature}}</td>
-    		<td>{{project.projectId}}</td>
-    		<td>{{project.projectTitle}}</td>
-    		<td>{{project.technologyUsed}}</td>
-  		  </tr>
-		</tbody>
-	</table>
+
+<div class="bs-component">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Project Description</th>
+        <th>Project Feature</th>
+        <th>Project Id</th>
+        <th>Project Title</th>
+        <th>Technology Used</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="project in projects">
+        <td>{{project.projectDescription}}</td>
+        <td>{{project.projectFeature}}</td>
+        <td>{{project.projectId}}</td>
+        <td>{{project.projectTitle}}</td>
+        <td>{{project.technologyUsed}}</td>
+        <td><button class="btn btn-primary" ng-click="getDetail(project.projectId)">Details</button></td>
+        </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+          <td><button class="btn btn-info" ng-click="getPreviousProject()">previous</button></td>
+          <td><button class="btn btn-info" ng-click="getNextProject()">next</button></td>
+        </tr>
+    </tfoot>
+  </table>
+
+  <div>
+    <pre>
+        {{project | json}}
+    </pre>
+  </div>
+</div>
 </div>

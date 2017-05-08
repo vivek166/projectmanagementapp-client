@@ -1,5 +1,11 @@
 <div>
 	<h1>GetEmployee</h1>
+      <div class="input-group">
+       <input type="text" class="form-control" ng-model="empId" placeholder="Search Employee with Id..">
+          <span class="input-group-btn">
+            <button class="btn btn-info" type="button">Search</button>
+          </span>
+    </div>
 </div>
 
 
@@ -14,12 +20,24 @@
   		  </tr>
 		</thead>
 		<tbody>
-  		  <tr ng-repeat="employee in employees">
+  		  <tr ng-repeat="employee in employees | filter:empId">
     		<td>{{employee.empId}}</td>
     		<td>{{employee.empName}}</td>
     		<td>{{employee.empDepartment}}</td>
     		<td>{{employee.empSubjects}}</td>
+        <td><button class="btn btn-primary" ng-click="getDetail(employee.empId)">Details</button></td>
   		  </tr>
 		</tbody>
+    <tfoot>
+      <tr>
+          <td><button class="btn btn-info" ng-click="getPreviousEmployee()">previous</button></td>
+          <td><button class="btn btn-info" ng-click="getNextEmployee()">next</button></td>
+        </tr>
+    </tfoot>
 	</table>
+  <div>
+    <pre>
+      {{employee | json}}
+    </pre>
+  </div>
 </div>

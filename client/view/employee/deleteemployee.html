@@ -1,5 +1,11 @@
 <div>
 	<h1>DeleteEmployee</h1>
+  <div class="input-group">
+       <input type="text" class="form-control" ng-model="empId" placeholder="Delete Delete with Id..">
+          <span class="input-group-btn">
+            <button class="btn btn-info" type="button">Search</button>
+          </span>
+    </div>
 </div>
 
 <div class="bs-component" ng-controller="deleteemployeeCtrl">
@@ -14,12 +20,12 @@
   		  </tr>
 		</thead>
 		<tbody>
-  		  <tr ng-repeat="employee in employees">
+  		  <tr ng-repeat="employee in employees | filter:empId">
     		<td>{{employee.empId}}</td>
     		<td>{{employee.empName}}</td>
     		<td>{{employee.empDepartment}}</td>
     		<td>{{employee.empSubjects}}</td>
-    		<td><button ng-click="delete(employee.empId)">Delete</button></td>
+    		<td><button class="btn btn-danger" ng-click="delete(employee.empId)">Delete</button></td>
   		  </tr>
 		</tbody>
 	</table>

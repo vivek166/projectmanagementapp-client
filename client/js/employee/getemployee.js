@@ -1,11 +1,50 @@
-
 app.controller('getemployeeCtrl', function($scope, $http) {
-$http({
+	var start=0;
+	var size=5;
+	$http({
         method : "GET",
-        url : "http://localhost:8080/projectmanagementapp/employee"
+        url : "http://localhost:8080/projectmanagementapp/employee?start="+start+"&size="+size
     }).then(function mySucces(response) {
         $scope.employees = response.data;
     }, function myError(response) {
         $scope.myWelcome = response.statusText;
     });
+	
+	$scope.getNextEmployee=function(){
+		 start=start+size;
+		 size=size;
+    $http({
+        method : "GET",
+        url : "http://localhost:8080/projectmanagementapp/employee?start="+start+"&size="+size
+    }).then(function mySucces(response) {
+        $scope.employees = response.data;
+    }, function myError(response) {
+        $scope.myWelcome = response.statusText;
+    });
+	}
+
+	$scope.getPreviousEmployee=function(){
+		 start=start-size;
+		 size=size;
+    $http({
+        method : "GET",
+        url : "http://localhost:8080/projectmanagementapp/employee?start="+start+"&size="+size
+    }).then(function mySucces(response) {
+        $scope.employees = response.data;
+    }, function myError(response) {
+        $scope.myWelcome = response.statusText;
+    });
+	}
+
+	$scope.getDetail=function(empId){
+		$http({
+        method : "GET",
+        url : "http://localhost:8080/projectmanagementapp/employee/"+empId
+    }).then(function mySucces(response) {
+        $scope.employee = response.data;
+        console.log($scope.employee);
+    }, function myError(response) {
+        $scope.myWelcome = response.statusText;
+    });
+	}
 });
