@@ -35,9 +35,14 @@
         </tr>
     </tfoot>
 	</table>
-  <div>
-    <pre>
-      {{employee | json}}
-    </pre>
+  <div ng-show="status">
+    <h3><b>Employee Name</b></h3><br>
+    <h4>{{employee.empName}}</h4><br>
+    <h3><b>Employee Id</b></h3><br>
+    <h4>{{employee.empId}}</h4><br>
+     <h3><b>Employee Department</b></h3><br>
+    <h4>{{employee.empDepartment}}</h4><br>
+     <h3><b>Employee Subjects</b></h3><br>
+    <h4>{{employee.empSubjects}}</h4><br>
   </div>
 </div>

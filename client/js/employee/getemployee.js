@@ -1,6 +1,7 @@
 app.controller('getemployeeCtrl', function($scope, $http) {
 	var start=0;
 	var size=5;
+    $scope.status=false;
 	$http({
         method : "GET",
         url : "http://localhost:8080/projectmanagementapp/employee?start="+start+"&size="+size
@@ -37,6 +38,7 @@ app.controller('getemployeeCtrl', function($scope, $http) {
 	}
 
 	$scope.getDetail=function(empId){
+        $scope.status=true;
 		$http({
         method : "GET",
         url : "http://localhost:8080/projectmanagementapp/employee/"+empId
