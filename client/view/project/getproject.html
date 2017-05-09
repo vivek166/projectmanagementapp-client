@@ -37,10 +37,17 @@
     </tfoot>
   </table>
 
-  <div>
-    <pre>
-        {{project | json}}
-    </pre>
+   <div ng-show="status">
+    <h3>Project Title</h3><br>
+    <h4>{{project.projectTitle}}</h4><br>
+    <h3>Project Id</h3><br>
+    <h4>{{project.projectId}}</h4><br>
+     <h3>Project Description</h3><br>
+    <h4>{{project.projectDescription}}</h4><br>
+     <h3>Project Feature</h3><br>
+    <h4>{{project.projectFeature}}</h4><br>
+    <h3>Technology Used</h3><br>
+    <h4>{{project.technologyUsed}}</h4><br>
   </div>
 </div>
 </div>

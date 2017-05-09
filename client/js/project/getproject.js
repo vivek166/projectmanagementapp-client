@@ -1,6 +1,7 @@
 app.controller('getprojectCtrl', function($scope, $http) {
 	var start=0;
 	var size=5;
+	$scope.status=false;
 	$http({
         method : "GET",
         url : "http://localhost:8080/projectmanagementapp/project?start="+start+"&size="+size
@@ -44,6 +45,7 @@ app.controller('getprojectCtrl', function($scope, $http) {
 
 
 	$scope.getDetail=function(projectId){
+		$scope.status=true;
 		$http({
         method : "GET",
         url : "http://localhost:8080/projectmanagementapp/project/"+projectId
