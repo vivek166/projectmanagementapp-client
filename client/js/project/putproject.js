@@ -30,8 +30,8 @@ app.controller('putprojectCtrl',function($scope, $http){
             url: 'http://localhost:8080/projectmanagementapp/project/'+project.projectId,
             data: project,
             headers: {'Content-Type': 'application/json'}
-        }).success(function (data, status, headers, config) {
-            console.log("data saved");
+        }).then(function (data, status, headers, config) {
+           alert("record updated");
         })
 	}
 });

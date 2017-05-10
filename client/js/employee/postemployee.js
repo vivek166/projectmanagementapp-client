@@ -10,8 +10,8 @@ app.controller('postemployeeCtrl',function($scope, $http){
             url: 'http://localhost:8080/projectmanagementapp/employee',
             data: employee,
             headers: {'Content-Type': 'application/json'}
-        }).success(function (data, status, headers, config) {
-            console.log("data saved");
+        }).then(function (data, status, headers, config) {
+            alert("record saved");
         })
 	}
 });
