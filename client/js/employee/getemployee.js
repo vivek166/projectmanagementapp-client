@@ -1,49 +1,38 @@
 app.controller('getemployeeCtrl', function($scope, $http) {
 	var start=0;
-	var size=5;
+	var size=3;
+    var content="";
     $scope.status=false;
+
+    var getEmployee=function(start, size, content){
 	$http({
         method : "GET",
-        url : "http://localhost:8080/projectmanagementapp/employee?start="+start+"&size="+size
+        url : "http://localhost:8080/projectmanagementapp/employee?start="+start+"&size="+size+"&query="+content
     }).then(function mySucces(response) {
         $scope.employees = response.data;
     }, function myError(response) {
         $scope.myWelcome = response.statusText;
     });
+   }
 	
 	$scope.getNextEmployee=function(){
 		 start=start+size;
-		 size=size;
-         getEmployee(start, size);
+         getEmployee(start, size, content);
 	}
 
 	$scope.getPreviousEmployee=function(){
 		 start=start-size;
-		 size=size;
-         getEmployee(start, size);
+         getEmployee(start, size, content);
 	}
 
     
-    var getEmployee=function(start, size){
-    $http({
-        method : "GET",
-        url : "http://localhost:8080/projectmanagementapp/employee?start="+start+"&size="+size
-    }).then(function mySucces(response) {
-        $scope.employees = response.data;
-    }, function myError(response) {
-        $scope.myWelcome = response.statusText;
-    });
-    }
+    getEmployee(start, size, content);
 
-    $scope.search=function(content){
-        $http({
-        method : "GET",
-        url : "http://localhost:8080/projectmanagementapp/employee/search?query="+content
-    }).then(function mySucces(response) {
-        $scope.employees = response.data;
-    }, function myError(response) {
-        $scope.myWelcome = response.statusText;
-    });
+
+    $scope.search=function(query){
+        content=content+query;
+        start=0;
+        getEmployee(start, size, content);
     }
 
 
@@ -57,7 +46,7 @@ app.controller('getemployeeCtrl', function($scope, $http) {
     }, function myError(response) {
         $scope.myWelcome = response.statusText;
     });
-	}
+   }
 });
 
 

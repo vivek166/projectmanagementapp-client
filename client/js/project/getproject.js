@@ -1,12 +1,15 @@
 app.controller('getprojectCtrl', function($scope, $http) {
 	var start=0;
-	var size=5;
-    $scope.next=true;
-    $scope.previous=true;
+	var size=3;
+    var content="";
 	$scope.status=false;
+
+
+
+    var getProject=function(start, size, content){
 	$http({
         method : "GET",
-        url : "http://localhost:8080/projectmanagementapp/project?start="+start+"&size="+size
+        url : "http://localhost:8080/projectmanagementapp/project?start="+start+"&size="+size+"&query="+content
     }).then(function mySucces(response) {
         $scope.projects = response.data;
         if($scope.projects.length>=5){
@@ -15,31 +18,24 @@ app.controller('getprojectCtrl', function($scope, $http) {
     }, function myError(response) {
         $scope.myWelcome = response.statusText;
     });
+    }
 	
 	$scope.getNextProject=function(){
 		 start=start+size;
-		 size=size;
-         getProject(start , size);
+         getProject(start , size, content);
 	}
 
 	$scope.getPreviousProject=function(){
 		 start=start-size;
-		 size=size;
-         getProject(start , size);
+         getProject(start , size, content);
 	}
 
 
-	$scope.search=function(content){
-        $http({
-        method : "GET",
-        url : "http://localhost:8080/projectmanagementapp/project/search?query="+content
-    }).then(function mySucces(response) {
-        $scope.projects = response.data;
-    }, function myError(response) {
-        $scope.myWelcome = response.statusText;
-    });
+	$scope.search=function(query){
+        content=content+query;
+        start=0;
+        getProject(start , size, content);
 	}
-
 
 	$scope.getDetail=function(projectId){
 		$scope.status=true;
@@ -53,18 +49,5 @@ app.controller('getprojectCtrl', function($scope, $http) {
     });
 	}
 
-    var getProject=function(start, size){
-    $http({
-        method : "GET",
-        url : "http://localhost:8080/projectmanagementapp/project?start="+start+"&size="+size
-    }).then(function mySucces(response) {
-        $scope.projects = response.data;
-        if($scope.projects.length>=5){
-            $scope.next=false;
-            $scope.previous=false;
-        }
-    }, function myError(response) {
-        $scope.myWelcome = response.statusText;
-    });
-   }
+    getProject(start , size, content);
 });
