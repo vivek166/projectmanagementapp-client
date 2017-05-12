@@ -21,10 +21,10 @@
 		</thead>
 		<tbody>
   		  <tr ng-repeat="employee in employees | filter:empId">
-    		<td>{{employee.empId}}</td>
-    		<td>{{employee.empName}}</td>
-    		<td>{{employee.empDepartment}}</td>
-    		<td>{{employee.empSubjects}}</td>
+    		<td>{{employee['empId']}}</td>
+        <td>{{employee['empName']}}</td>
+        <td>{{employee['empDepartment']}}</td>
+        <td>{{employee['empSubjects']}}</td>
     		<td><button class="btn btn-danger" ng-click="delete(employee.empId)">Delete</button></td>
   		  </tr>
 		</tbody>

@@ -21,11 +21,11 @@
     </thead>
     <tbody>
         <tr ng-repeat="project in projects">
-        <td>{{project.projectDescription}}</td>
-        <td>{{project.projectFeature}}</td>
-        <td>{{project.projectId}}</td>
-        <td>{{project.projectTitle}}</td>
-        <td>{{project.technologyUsed}}</td>
+        <td>{{project['projectDescription']}}</td>
+        <td>{{project['projectFeature']}}</td>
+        <td>{{project['projectId']}}</td>
+        <td>{{project['projectTitle']}}</td>
+        <td>{{project['technologyUsed']}}</td>
         <td><button class="btn btn-primary" ng-click="getDetail(project.projectId)">Details</button></td>
         </tr>
     </tbody>
