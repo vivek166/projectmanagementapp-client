@@ -21,18 +21,19 @@
     </thead>
     <tbody>
         <tr ng-repeat="project in projects">
-        <td>{{project['projectDescription']}}</td>
-        <td>{{project['projectFeature']}}</td>
-        <td>{{project['projectId']}}</td>
-        <td>{{project['projectTitle']}}</td>
-        <td>{{project['technologyUsed']}}</td>
+        <td>{{project.projectDescription}}</td>
+        <td>{{project.projectFeature}}</td>
+        <td>{{project.projectId}}</td>
+        <td>{{project.projectTitle}}</td>
+        <td>{{project.technologyUsed}}</td>
         <td><button class="btn btn-primary" ng-click="getDetail(project.projectId)">Details</button></td>
         </tr>
     </tbody>
     <tfoot>
       <tr>
-          <td><button class="btn btn-info"  ng-click="getPreviousProject()">previous</button></td>
-          <td><button class="btn btn-info"  ng-click="getNextProject()">next</button></td>
+          <td><button class="btn btn-info" ng-disabled="preBtnStatus" ng-click="getPreviousProject()">previous</button></td>
+          <td>[{{begin}}-{{end}}] of {{total}}</td>
+          <td><button class="btn btn-info" ng-disabled="nextBtnStatus" ng-click="getNextProject()">next</button></td>
         </tr>
     </tfoot>
   </table>

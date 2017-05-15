@@ -30,8 +30,8 @@
 		</tbody>
     <tfoot>
       <tr>
-          <td><button class="btn btn-info" ng-click="getPreviousEmployee()">previous</button></td>
-          <td><button class="btn btn-info" ng-click="getNextEmployee()">next</button></td>
+          <td><button class="btn btn-info" ng-disabled="preBtnStatus" ng-click="getPreviousEmployee()">previous</button></td>
+          <td><button class="btn btn-info" ng-disabled="nextBtnStatus" ng-click="getNextEmployee()">next</button></td>
         </tr>
     </tfoot>
 	</table>

@@ -32,8 +32,8 @@
 		</tbody>
     <tfoot>
       <tr>
-          <td><button class="btn btn-info" ng-click="getPreviousProject()">previous</button></td>
-          <td><button class="btn btn-info" ng-click="getNextProject()">next</button></td>
+          <td><button class="btn btn-info" ng-disabled="preBtnStatus" ng-click="getPreviousProject()">previous</button></td>
+          <td><button class="btn btn-info" ng-disabled="nextBtnStatus" ng-click="getNextProject()">next</button></td>
         </tr>
     </tfoot>
 	</table>

@@ -3,23 +3,25 @@
 </div>
 
 <div class="bs-component" ng-controller="postemployeeCtrl">
+<form>
 	<table class="table table-striped table-hover">
 		<tbody>
 		  <tr>
     		<th>Employee Name</th>
-    		<td><input type="text" ng-model="empName"></td>
+    		<td><input type="text" ng-model="empName" required></td>
     	  </tr>
     	  <tr>
     		<th>Employee Department</th>
-    		<td><input type="text" ng-model="empDepartment"></td>
+    		<td><input type="text" ng-model="empDepartment" required></td>
     	  </tr>
     	  <tr>
     		<th>Subjects</th>
-    		<td><input type="text" ng-model="empSubjects"></td>
+    		<td><input type="text" ng-model="empSubjects" required></td>
     	  </tr>
   		  <tr>
   		  	<td><button class="btn btn-primary" ng-click="save()">Save</button></td>
   		  </tr>
 		</tbody>
 	</table>
+</form>
 </div>
