@@ -3,9 +3,10 @@ app.controller('getemployeeCtrl', function($scope, $http) {
     var start=1;
     var size=3;
     var content="";
-    $scope.status=false;
-    $scope.preBtnStatus=true;
-    $scope.nextBtnStatus=true;
+    $scope.detailsDivStatus = false;
+    $scope.empIdStatus = true;
+    $scope.preBtnStatus = true;
+    $scope.nextBtnStatus = true;
 
 
     var indexing=function(begin , end, total){
@@ -13,8 +14,6 @@ app.controller('getemployeeCtrl', function($scope, $http) {
         $scope.end=end;
         $scope.total=total;
     }
-
-
 
     var getEmployee=function(start, size, content, pageNumber){
 	$http({
@@ -43,7 +42,7 @@ app.controller('getemployeeCtrl', function($scope, $http) {
    }
 	
 	$scope.getNextEmployee=function(){
-		  $scope.preBtnStatus=false;
+		 $scope.preBtnStatus=false;
          start=start+1;
          pageNumber=pageNumber+1;
          getEmployee((start-1)*size , size, content, pageNumber);
@@ -56,17 +55,17 @@ app.controller('getemployeeCtrl', function($scope, $http) {
          getEmployee((start-1)*size , size, content, pageNumber);
 	}
 
-
-
-    $scope.search=function(query){
-        content=content+query;
-        start=1;
-        getEmployee((start-1)*size , size, content, pageNumber);
+    $scope.search = function(query) {
+        pageNumber = 1;
+        start = 1;
+        content = content + query;
+        getEmployee((start - 1) * size, size, content, pageNumber);
     }
 
 
-	$scope.getDetail=function(empId){
-        $scope.status=true;
+
+	var getDetail=function(empId){
+        $scope.detailsDivStatus=true;
 		$http({
         method : "GET",
         url : "http://localhost:8080/projectmanagementapp/employee/"+empId
@@ -78,24 +77,108 @@ app.controller('getemployeeCtrl', function($scope, $http) {
    }
 
 
+
+    $scope.showDetail = function(empId) {
+        $scope.empIdStatus = true;
+        $scope.saveBtnStatus = false;
+        $scope.updateBtnStatus = false;
+        $scope.inputStatus = true;
+        getDetail(empId);
+    }
+
+    $scope.updateDetail = function(empId) {
+        $scope.saveBtnStatus = false;
+        $scope.updateBtnStatus = true;
+        $scope.empIdStatus = true;
+        $scope.inputStatus = false;
+        getDetail(empId);
+    }
+
+    $scope.addRecord = function() {
+        $scope.saveBtnStatus = true;
+        $scope.updateBtnStatus = false;
+        $scope.empIdStatus = false;
+        $scope.inputStatus = false;
+        $scope.detailsDivStatus = true;
+        $scope.employee={};
+    }
+
+    $scope.cancel = function() {
+        var cancelStatus = confirm('Are you sure! you want to cancel');
+        if (cancelStatus) {
+            $scope.detailsDivStatus = false;
+        } else {
+            $scope.detailsDivStatus = true;
+        }
+    }
+
+    $scope.save = function() {
+        var saveStatus = confirm('Are you sure you want to save');
+        if (saveStatus) {
+            var employee = {};
+            employee.empId = $scope.empId;
+            employee.empName = $scope.empName;
+            employee.empDepartment = $scope.empDepartment;
+            employee.empSubjects = $scope.empSubjects;
+            $http({
+                method: 'POST',
+                url: 'http://localhost:8080/projectmanagementapp/employee',
+                data: employee,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function(data, status, headers, config) {
+                alert("record saved");
+                $scope.detailsDivStatus = false;
+            })
+        } else {
+            alert('record not saved');
+        }
+
+    }
+
+    $scope.update = function() {
+        var saveStatus = confirm('Are you sure you want to update');
+        if (saveStatus) {
+           var employee = {};
+            employee.empId = $scope.empId;
+            employee.empName = $scope.empName;
+            employee.empDepartment = $scope.empDepartment;
+            employee.empSubjects = $scope.empSubjects;
+
+            $http({
+                method: 'PUT',
+                url: 'http://localhost:8080/projectmanagementapp/employee/' + employee.empId,
+                data: employee,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function(data, status, headers, config) {
+                alert("record updated");
+                $scope.detailsDivStatus = false;
+            })
+        } else {
+            alert("record could not be updated");
+        }
+    }
+
+    $scope.delete = function(empId) {
+        var deleteStatus = confirm('Are you sure you want to delete');
+        if (deleteStatus) {
+            $http({
+                method: "DELETE",
+                url: "http://localhost:8080/projectmanagementapp/employee/" + empId
+            }).then(function mySucces(response) {
+                alert("record deleted");
+                getEmployee((start - 1) * size, size, content, pageNumber);
+            }, function myError(response) {
+                $scope.myWelcome = response.statusText;
+            });
+        } else {
+            alert("record could not be deleted");
+        }
+    }
+
+
    getEmployee((start-1)*size , size, content, pageNumber);
 });
-
-
-
-
-/*$scope.employees = [];
-        for(i=0; i< response.data.data.length; i++){
-            var array = response.data.data[i];
-            var subArray = array.substring(array.indexOf('[') + 1, array.length -1);
-            var jsonObj = subArray.split(",");
-            var resultObj = {};
-            for(j=0; j < jsonObj.length; j++){
-                var key = jsonObj[j].split('=')[0].trim();
-                var val = jsonObj[j].split('=')[1].trim();
-                resultObj[key] = val;
-            }
-            $scope.employees.push(resultObj);
-        }*/
-
-

@@ -55,7 +55,7 @@
         <h2 ng-show="updateBtnStatus"><b>Update your record</b></h2>
         <h2 ng-show="!saveBtnStatus && !updateBtnStatus"><b>Project Details</b></h2>
             <form>
-                <div class="form-group">
+                <div class="form-group" ng-show="projectIdStatus">
                     <label><h3>Project Id</h3></label>
                     <input class="form-control" type="text" ng-model="projectId" ng-init="projectId='{{project.projectId}}'" value="{{project.projectId}}" ng-disabled="inputStatus">
                 </div>
