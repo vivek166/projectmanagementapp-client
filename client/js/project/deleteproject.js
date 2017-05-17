@@ -60,18 +60,3 @@ app.controller('deleteprojectCtrl', function($scope, $http) {
     });
     }
 });
-
-
-/*$scope.projects = [];
-        for(i=0; i< response.data.data.length; i++){
-            var array = response.data.data[i];
-            var subArray = array.substring(array.indexOf('[') + 1, array.length -1);
-            var jsonObj = subArray.split(",");
-            var resultObj = {};
-            for(j=0; j < jsonObj.length; j++){
-                var key = jsonObj[j].split('=')[0].trim();
-                var val = jsonObj[j].split('=')[1].trim();
-                resultObj[key] = val;
-            }
-            $scope.projects.push(resultObj);
-        }*/

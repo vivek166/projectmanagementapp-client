@@ -6,11 +6,12 @@
   <meta charset="utf-8">
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="/client/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  
   <script src="/client/bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="/client/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="/client/bower_components/angular/angular.min.js"></script>
   <script src="/client/bower_components/angular-route/angular-route.min.js"></script>
+  <script src="/client/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/client/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <style>
     .row.content {height: 1500px}
     .sidenav {
@@ -48,24 +49,27 @@
 
 <div class="container-fluid">
   <div class="row content">
-    <div class="col-sm-3 sidenav">
+    <div class="col-sm-2 sidenav">
       <h4>Project Services</h4>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="/getproject">GetProject</a></li>
-        <li><a href="/postproject">PostProject</a></li>
-        <li><a href="/putproject">PutProject</a></li>
-        <li><a href="/deleteproject">DeleteProject</a></li>
+        <li><a href="/getproject">Project</a></li>
+        <li><a href="/postproject">Add Project</a></li>
+        <li><a href="/putproject">Update Project</a></li>
+        <li><a href="/deleteproject">Delete Project</a></li>
       </ul>
       <h4>Employee Services</h4>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="/getemployee">GetEmployee</a></li>
-        <li><a href="/postemployee">PostEmployee</a></li>
-        <li><a href="/putemployee">PutEmployee</a></li>
-        <li><a href="/deleteemployee">DeleteEmployee</a></li>
+        <li><a href="/getemployee">Employee</a></li>
+        <li><a href="/postemployee">Add Employee</a></li>
+        <li><a href="/putemployee">Update Employee</a></li>
+        <li><a href="/deleteemployee">Delete Employee</a></li>
       </ul>
     </div>
-<div class="col-sm-9 sidenav">
-	<div ng-view></div>
+<div class="col-sm-10 sidenav">
+	<div ng-view>
+   
+
+  </div>
 </div>
 </div>
 </div>

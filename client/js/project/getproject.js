@@ -57,13 +57,36 @@ app.controller('getprojectCtrl', function($scope, $http) {
 
 
 	$scope.search=function(query){
+         pageNumber=1;
+         start=1;
         content=content+query;
         getProject((start-1)*size , size, content, pageNumber);
 	}
 
-	$scope.getDetail=function(projectId){
-		$scope.status=true;
-		$http({
+    getProject((start-1)*size , size, content, pageNumber);
+
+
+    $scope.save=function(){
+    var project={};
+    project.projectTitle=$scope.projectTitle;
+    project.projectFeature=$scope.projectFeature;
+    project.projectDescription=$scope.projectDescription;
+    project.technologyUsed=$scope.technologyUsed;
+    project.emplIds=$scope.emplIds;
+
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8080/projectmanagementapp/project',
+            data: project,
+            headers: {'Content-Type': 'application/json'}
+        }).then(function (data, status, headers, config) {
+            alert("record saved");
+        })
+    }
+
+    $scope.getDetail=function(projectId){
+        $scope.status=true;
+        $http({
         method : "GET",
         url : "http://localhost:8080/projectmanagementapp/project/"+projectId
     }).then(function mySucces(response) {
@@ -71,25 +94,36 @@ app.controller('getprojectCtrl', function($scope, $http) {
     }, function myError(response) {
         $scope.myWelcome = response.statusText;
     });
-	}
+    }
 
-    getProject((start-1)*size , size, content, pageNumber);
+
+    $scope.patch=function(){
+    var project={};
+    project.projectId=$scope.projectId;
+    project.projectTitle=$scope.projectTitle;
+    project.projectFeature=$scope.projectFeature;
+    project.projectDescription=$scope.projectDescription;
+    project.technologyUsed=$scope.technologyUsed;
+
+        $http({
+            method: 'PATCH',
+            url: 'http://localhost:8080/projectmanagementapp/project/'+project.projectId,
+            data: project,
+            headers: {'Content-Type': 'application/json'}
+        }).then(function (data, status, headers, config) {
+           alert("record updated");
+        })
+    }
+
+
+    $scope.delete=function(projectId){
+         $http({
+        method : "DELETE",
+        url : "http://localhost:8080/projectmanagementapp/project/"+projectId
+    }).then(function mySucces(response) {
+        alert("record deleted");
+    }, function myError(response) {
+        $scope.myWelcome = response.statusText;
+    });
+    }
 });
-
-
-
-
-
- /*$scope.projects = [];
-        for(i=0; i< response.data.data.length; i++){
-            var array = response.data.data[i];
-            var subArray = array.substring(array.indexOf('[') + 1, array.length -1);
-            var jsonObj = subArray.split(",");
-            var resultObj = {};
-            for(j=0; j < jsonObj.length; j++){
-                var key = jsonObj[j].split('=')[0].trim();
-                var val = jsonObj[j].split('=')[1].trim();
-                resultObj[key] = val;
-            }
-            $scope.projects.push(resultObj);
-        }*/

@@ -9,9 +9,9 @@
   "homepage": "https://github.com/vivek166/projectui",
   "dependencies": {
     "angular": "^1.6.4",
-    "bootstrap": "^3.3.7",
     "jquery": "^3.2.1",
-    "angular-route": "^1.6.4"
+    "angular-route": "^1.6.4",
+    "bootstrap": "boostrap#^3.3.7"
   },
   "ignore": [
     "**/.*",
