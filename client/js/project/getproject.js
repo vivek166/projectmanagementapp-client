@@ -60,6 +60,7 @@ app.controller('getprojectCtrl', function($scope, $http) {
     $scope.search = function(query) {
         pageNumber = 1;
         start = 1;
+        size = 3;
         content = content + query;
         getProject((start - 1) * size, size, content, pageNumber);
     }
@@ -75,7 +76,6 @@ app.controller('getprojectCtrl', function($scope, $http) {
             project.projectFeature = $scope.projectFeature;
             project.projectDescription = $scope.projectDescription;
             project.technologyUsed = $scope.technologyUsed;
-            project.emplIds = $scope.emplIds;
 
             $http({
                 method: 'POST',
@@ -94,11 +94,12 @@ app.controller('getprojectCtrl', function($scope, $http) {
 
     }
 
-    $scope.update = function() {
+    $scope.update = function(projectId) {
         var saveStatus = confirm('Are you sure you want to update');
         if (saveStatus) {
+            console.log(projectId+$scope.projectTitle+$scope.projectFeature+$scope.projectDescription+$scope.technologyUsed);
             var project = {};
-            project.projectId = $scope.projectId;
+            project.projectId = projectId;
             project.projectTitle = $scope.projectTitle;
             project.projectFeature = $scope.projectFeature;
             project.projectDescription = $scope.projectDescription;
@@ -106,7 +107,7 @@ app.controller('getprojectCtrl', function($scope, $http) {
 
             $http({
                 method: 'PUT',
-                url: 'http://localhost:8080/projectmanagementapp/project/' + project.projectId,
+                url: 'http://localhost:8080/projectmanagementapp/project/' + projectId,
                 data: project,
                 headers: {
                     'Content-Type': 'application/json'
@@ -168,7 +169,7 @@ app.controller('getprojectCtrl', function($scope, $http) {
     $scope.updateDetail = function(projectId) {
         $scope.saveBtnStatus = false;
         $scope.updateBtnStatus = true;
-        $scope.projectIdStatus = true;
+        $scope.projectIdStatus = false;
         $scope.inputStatus = false;
         getDetail(projectId);
     }

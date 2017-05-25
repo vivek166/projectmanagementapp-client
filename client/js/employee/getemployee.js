@@ -89,7 +89,7 @@ app.controller('getemployeeCtrl', function($scope, $http) {
     $scope.updateDetail = function(empId) {
         $scope.saveBtnStatus = false;
         $scope.updateBtnStatus = true;
-        $scope.empIdStatus = true;
+        $scope.empIdStatus = false;
         $scope.inputStatus = false;
         getDetail(empId);
     }
@@ -120,6 +120,7 @@ app.controller('getemployeeCtrl', function($scope, $http) {
             employee.empName = $scope.empName;
             employee.empDepartment = $scope.empDepartment;
             employee.empSubjects = $scope.empSubjects;
+            employee.employeeType = $scope.employeeType;
             $http({
                 method: 'POST',
                 url: 'http://localhost:8080/projectmanagementapp/employee',
@@ -137,18 +138,19 @@ app.controller('getemployeeCtrl', function($scope, $http) {
 
     }
 
-    $scope.update = function() {
+    $scope.update = function(empId) {
         var saveStatus = confirm('Are you sure you want to update');
         if (saveStatus) {
            var employee = {};
-            employee.empId = $scope.empId;
+            employee.empId = empId;
             employee.empName = $scope.empName;
             employee.empDepartment = $scope.empDepartment;
             employee.empSubjects = $scope.empSubjects;
+            employee.employeeType = $scope.employeeType;
 
             $http({
                 method: 'PUT',
-                url: 'http://localhost:8080/projectmanagementapp/employee/' + employee.empId,
+                url: 'http://localhost:8080/projectmanagementapp/employee/' + empId,
                 data: employee,
                 headers: {
                     'Content-Type': 'application/json'

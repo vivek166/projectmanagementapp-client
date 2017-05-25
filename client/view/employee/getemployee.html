@@ -6,7 +6,7 @@
 <div ng-controller="getemployeeCtrl">
     <br>
     <div>
-        <button class="btn btn-info" ng-click="addRecord()" type="button">Add new project</button>
+        <button class="btn btn-info" ng-click="addRecord()" type="button">Add employee</button>
     </div><br>
     <div class="input-group">
         <input type="text" class="form-control" ng-model="content" placeholder="search">
@@ -24,6 +24,8 @@
                     <th>Employee Name</th>
                     <th>Employee Department</th>
                     <th>Subjects</th>
+                    <th>Employee Type</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -32,10 +34,11 @@
                     <td>{{employee.empName}}</td>
                     <td>{{employee.empDepartment}}</td>
                     <td>{{employee.empSubjects}}</td>
+                    <td>{{employee.employeeType}}</td>
                     <td align="right">
-                        <button class="btn btn-primary" ng-click="showDetail(employee.empId)"><span class="glyphicon glyphicon-eye-open"></span></button>
-                        <button class="btn btn-primary" ng-click="updateDetail(employee.empId)"><span class="glyphicon glyphicon-edit"></span></button>
-                        <button class="btn btn-primary" ng-click="delete(employee.empId)"><span class="glyphicon glyphicon-trash"></span></button>
+                        <button class="btn btn-primary" title="show employee" ng-click="showDetail(employee.empId)"><span class="glyphicon glyphicon-eye-open"></span></button>
+                        <button class="btn btn-primary" title="update employee" ng-click="updateDetail(employee.empId)"><span class="glyphicon glyphicon-edit"></span></button>
+                        <button class="btn btn-primary" title="delete employee" ng-click="delete(employee.empId)"><span class="glyphicon glyphicon-trash"></span></button>
                     </td>
                 </tr>
             </tbody>
@@ -72,8 +75,12 @@
                     <label><h3>Employee Subjects</h3></label>
                     <input class="form-control" type="text" ng-model="empSubjects" ng-init="empSubjects='{{employee.empSubjects}}'" value="{{employee.empSubjects}}" ng-disabled="inputStatus">
                 </div>
+                <div class="form-group">
+                    <label><h3>Employee Type</h3></label>
+                    <input class="form-control" type="text" ng-model="employeeType" ng-init="employeeType='{{employee.employeeType}}'" value="{{employee.employeeType}}" ng-disabled="inputStatus">
+                </div>
                 <button type="submit" class="btn btn-primary" ng-show="saveBtnStatus" ng-click="save()">Save</button>
-                <button type="submit" class="btn btn-primary" ng-show="updateBtnStatus" ng-click="update()">Update</button>
+                <button type="submit" class="btn btn-primary" ng-show="updateBtnStatus" ng-click="update(employee.empId)">Update</button>
                 <button class="btn btn-primary" ng-show="saveBtnStatus || updateBtnStatus" ng-click="cancel()">Cancel</button>
             </form>
         </div>

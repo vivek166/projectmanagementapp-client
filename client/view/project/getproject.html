@@ -8,7 +8,7 @@
 <div ng-controller="getprojectCtrl">
 <br>
     <div>
-        <button class="btn btn-info" ng-click="addRecord()" type="button">Add new project</button>
+        <button class="btn btn-info" ng-click="addRecord()" type="button">Add project</button>
     </div><br>
     <div class="input-group">
         <input type="text" class="form-control" ng-model="content" placeholder="search">
@@ -35,9 +35,9 @@
                     <td>{{project.projectId}}</td>
                     <td>{{project.projectTitle}}</td>
                     <td>{{project.technologyUsed}}</td>
-                    <td align="right"><button class="btn btn-primary" ng-click="showDetail(project.projectId)"><span class="glyphicon glyphicon-eye-open"></span></button>
-                        <button class="btn btn-primary" ng-click="updateDetail(project.projectId)"><span class="glyphicon glyphicon-edit"></span></button>
-                        <button class="btn btn-primary" ng-click="delete(project.projectId)"><span class="glyphicon glyphicon-trash"></span></button>
+                    <td align="right"><button class="btn btn-primary" title="show project" ng-click="showDetail(project.projectId)"><span class="glyphicon glyphicon-eye-open"></span></button>
+                        <button class="btn btn-primary" title="update project" ng-click="updateDetail(project.projectId)"><span class="glyphicon glyphicon-edit"></span></button>
+                        <button class="btn btn-primary" title="delete project" ng-click="delete(project.projectId)"><span class="glyphicon glyphicon-trash"></span></button>
                     </td>
                 </tr>
             </tbody>
@@ -76,7 +76,7 @@
                     <input class="form-control" type="text" ng-model="projectDescription" ng-init="projectDescription='{{project.projectDescription}}'" value="{{project.projectDescription}}" ng-disabled="inputStatus">
                 </div>
                 <button type="submit" class="btn btn-primary" ng-show="saveBtnStatus" ng-click="save()">Save</button>
-                <button type="submit" class="btn btn-primary" ng-show="updateBtnStatus" ng-click="update()">Update</button>
+                <button type="submit" class="btn btn-primary" ng-show="updateBtnStatus" ng-click="update(project.projectId)">Update</button>
                 <button class="btn btn-primary" ng-show="saveBtnStatus || updateBtnStatus" ng-click="cancel()">Cancel</button>
             </form>
         </div>
